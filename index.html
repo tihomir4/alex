@@ -32,6 +32,14 @@ function calculateMousePos(evt) {
 	};
 }
 
+function handleMouseClick(evt) {
+	if(showingWinScreen) {
+		player1Score = 0;
+		player2Score = 0;
+		showingWinScreen = false;
+	}
+}
+
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
@@ -42,6 +50,8 @@ window.onload = function() {
 			drawEverything();	
 		}, 1000/framesPerSecond);
 
+	canvas.addEventListener('mousedown', handleMouseClick);
+
 	canvas.addEventListener('mousemove',
 		function(evt) {
 			var mousePos = calculateMousePos(evt);
@@ -51,7 +61,8 @@ window.onload = function() {
 
 function ballReset() {
 	if(player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE) {
-		showingWinScreen = true;		
+		showingWinScreen = true;
+		alert(Click the page to restart.)
 	}	
 
 	ballSpeedX = -ballSpeedX;
@@ -149,5 +160,11 @@ function colorRect(leftX,topY, width,height, drawColor) {
 }
 
 </script>
+
+<title>
+
+Pong
+
+</title>
 
 </html>
